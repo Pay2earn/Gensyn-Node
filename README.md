@@ -98,20 +98,6 @@ if [ ! -d "$HOME/.yarn" ]; then
     source ~/.bashrc
 fi
 
-# === Clone or Update the Repository ===
-REPO_NAME="rl-swarm"
-REPO_URL="https://github.com/gensyn-ai/rl-swarm.git"
-
-if [ -d "$REPO_NAME/.git" ]; then
-    echo_green ">> Repository exists. Pulling latest changes..."
-    cd "$REPO_NAME"
-    git pull origin main || git pull
-else
-    echo_green ">> Cloning RL Swarm repository..."
-    git clone "$REPO_URL"
-    cd "$REPO_NAME"
-fi
-
 # === Python Virtual Environment Setup ===
 echo_green ">> Setting up Python virtual environment..."
 if [ ! -d ".venv" ]; then

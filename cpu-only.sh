@@ -78,6 +78,7 @@ source .venv/bin/activate
 export CPU_ONLY=1
 export CUDA_VISIBLE_DEVICES=""
 export HF_HUB_DOWNLOAD_TIMEOUT=300
+export WANDB_MODE=disabled
 
 # === Run swarm launcher ===
 echo_green ">> Launching RL Swarm"

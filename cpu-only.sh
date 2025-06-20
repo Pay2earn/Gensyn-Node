@@ -19,8 +19,16 @@ install_if_missing() {
     done
 }
 
-echo_green ">> Updating system packages..."
-sudo apt-get update && sudo apt-get upgrade -y
+echo_green ">> Installing needrestart to handle service restarts automatically..."
+install_if_missing needrestart
+
+echo_green ">> Updating system packages (noninteractive)..."
+export DEBIAN_FRONTEND=noninteractive
+sudo apt-get update
+sudo apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade -y
+
+echo_green ">> Running needrestart to restart services automatically..."
+sudo needrestart -r a
 
 echo_green ">> Installing general tools if missing..."
 install_if_missing screen curl iptables build-essential git wget lz4 jq make gcc nano \

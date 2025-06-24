@@ -33,10 +33,10 @@ OR
 ## Download and Run the Installer:
 ```bash
 # Update packages
-apt update && apt upgrade -y
+sudo apt update && sudo apt upgrade -y
 
 # download wget
-apt install wget
+sudo apt install wget
 ```
 
 ```bash

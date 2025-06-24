@@ -42,10 +42,8 @@ sudo apt install wget
 ```bash
 # Download the installation script
 wget https://raw.githubusercontent.com/Pay2earn/Gensyn-Node/main/cpu-only.sh -O cpu-only.sh
-```
 
-* Give permission to run the script
-```bash
+# Make it executable
 chmod +x cpu-only.sh
 ```
 

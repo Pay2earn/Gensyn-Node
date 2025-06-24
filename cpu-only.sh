@@ -19,16 +19,8 @@ install_if_missing() {
     done
 }
 
-echo_green ">> Installing needrestart to handle service restarts automatically..."
-install_if_missing needrestart
-
-echo_green ">> Updating system packages (noninteractive)..."
-export DEBIAN_FRONTEND=noninteractive
-sudo apt-get update
-sudo apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" upgrade -y
-
-echo_green ">> Running needrestart to restart services automatically..."
-sudo needrestart -r a
+echo_green ">> Updating system packages..."
+sudo apt-get update && sudo apt-get upgrade -y
 
 echo_green ">> Installing general tools if missing..."
 install_if_missing screen curl iptables build-essential git wget lz4 jq make gcc nano \
@@ -61,22 +53,6 @@ if [ ! -d "$HOME/.yarn" ]; then
     source ~/.bashrc
 fi
 
-# === Clone the Repository if missing ===
-REPO_NAME="rl-swarm"
-REPO_URL="https://github.com/gensyn-ai/rl-swarm.git"
-
-if [ ! -d "$REPO_NAME/.git" ]; then
-    echo_green ">> Cloning RL Swarm repository..."
-    git clone "$REPO_URL"
-else
-    echo_green ">> Repository already exists. Skipping clone."
-fi
-
-# ให้สิทธิ์ 777 ทั้งโฟลเดอร์ rl-swarm เพื่อหลีกเลี่ยง Permission denied
-chmod -R 777 "$REPO_NAME"
-
-cd "$REPO_NAME"
-
 # === Python Virtual Environment Setup ===
 echo_green ">> Setting up Python virtual environment..."
 if [ ! -d ".venv" ]; then
@@ -94,9 +70,3 @@ export WANDB_MODE=disabled
 echo_green ">> Launching RL Swarm"
 chmod +x run_rl_swarm.sh
 ./run_rl_swarm.sh
-
-# === Save this script as cpu-only.sh inside rl-swarm directory ===
-SCRIPT_DEST="./cpu-only.sh"
-cp "$0" "$SCRIPT_DEST"
-chmod +x "$SCRIPT_DEST"
-echo_green ">> Script saved as $SCRIPT_DEST"

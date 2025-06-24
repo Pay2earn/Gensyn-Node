@@ -64,13 +64,33 @@ fi
 # === Clone or Update the Repository ===
 REPO_NAME="rl-swarm"
 REPO_URL="https://github.com/gensyn-ai/rl-swarm.git"
+BACKUP_DIR="/tmp/${REPO_NAME}-backup-$(date +%s)"
 
 if [ -d "$REPO_NAME/.git" ]; then
-    echo_green ">> Repository exists. Resetting to origin/main..."
+    echo_green ">> Repository exists. Checking local changes..."
+
     cd "$REPO_NAME"
-    git fetch origin
-    git reset --hard origin/main
-    cd ..
+
+    if [ -n "$(git status --porcelain)" ]; then
+        echo_green ">> Local changes detected. Backing up files before reset..."
+
+        cd ..
+        mkdir -p "$BACKUP_DIR"
+        rsync -av --exclude='.git' --exclude='.venv' "$REPO_NAME/" "$BACKUP_DIR/"
+
+        cd "$REPO_NAME"
+        git fetch origin
+        git reset --hard origin/main
+
+        echo_green ">> Restoring backup files..."
+        rsync -av "$BACKUP_DIR/" "$REPO_NAME/"
+
+        echo_green ">> Cleaning up backup..."
+        rm -rf "$BACKUP_DIR"
+    else
+        echo_green ">> Working tree clean. No backup/reset needed."
+        cd ..
+    fi
 else
     echo_green ">> Cloning RL Swarm repository..."
     git clone "$REPO_URL"

@@ -30,10 +30,18 @@ OR
 
 ## ⚡ Quick Start
 
-* Clone repo
+## Download and Run the Installer:
 ```bash
-git clone https://github.com/Pay2earn/Gensyn-Node.git rl-swarm
-cd rl-swarm
+# Update packages
+apt update && apt upgrade -y
+
+# download wget
+apt install wget
+```
+
+```bash
+# Download the installation script
+wget https://raw.githubusercontent.com/Pay2earn/Gensyn-Node/main/cpu-only.sh -O cpu-only.sh
 ```
 
 * Give permission to run the script

@@ -64,6 +64,7 @@ After installation, to Run Script Again
 cd ~/rl-swarm
 ```
 
+```bash
 sudo ./cpu-only.sh
 ```
 

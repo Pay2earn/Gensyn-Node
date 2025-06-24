@@ -96,6 +96,9 @@ else
     git clone "$REPO_URL"
 fi
 
+# ให้สิทธิ์ 777 ทั้งโฟลเดอร์ rl-swarm เพื่อหลีกเลี่ยง Permission denied
+chmod -R 777 "$REPO_NAME"
+
 cd "$REPO_NAME"
 
 # === Python Virtual Environment Setup ===
@@ -120,4 +123,3 @@ chmod +x run_rl_swarm.sh
 SCRIPT_DEST="./cpu-only.sh"
 cp "$0" "$SCRIPT_DEST"
 echo_green ">> Script saved as $SCRIPT_DEST"
-

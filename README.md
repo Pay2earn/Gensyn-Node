@@ -62,8 +62,11 @@ After installation, to Run Script Again
 
 ```bash
 cd ~/rl-swarm
-./cpu-only.sh
 ```
+
+sudo ./cpu-only.sh
+```
+
 * `Would you like to connect to the Testnet? [Y/n]` >>> Press `Y` to join testnet
 * `Which swarm would you like to join (Math (A) or Math Hard (B))? [A/b]` >>> We have two type of Swarms:
   * `A`: Math (GSM8K dataset) -- Lower systems (>8GB) -- Use Small model (0.5B or 1.5B) for it.

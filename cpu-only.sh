@@ -61,39 +61,15 @@ if [ ! -d "$HOME/.yarn" ]; then
     source ~/.bashrc
 fi
 
-# === Clone or Update the Repository ===
+# === Clone the Repository if missing ===
 REPO_NAME="rl-swarm"
 REPO_URL="https://github.com/gensyn-ai/rl-swarm.git"
-BACKUP_DIR="/tmp/${REPO_NAME}-backup-$(date +%s)"
 
-if [ -d "$REPO_NAME/.git" ]; then
-    echo_green ">> Repository exists. Checking local changes..."
-
-    cd "$REPO_NAME"
-
-    if [ -n "$(git status --porcelain)" ]; then
-        echo_green ">> Local changes detected. Backing up files before reset..."
-
-        cd ..
-        mkdir -p "$BACKUP_DIR"
-        rsync -av --exclude='.git' --exclude='.venv' "$REPO_NAME/" "$BACKUP_DIR/"
-
-        cd "$REPO_NAME"
-        git fetch origin
-        git reset --hard origin/main
-
-        echo_green ">> Restoring backup files..."
-        rsync -av "$BACKUP_DIR/" "$REPO_NAME/"
-
-        echo_green ">> Cleaning up backup..."
-        rm -rf "$BACKUP_DIR"
-    else
-        echo_green ">> Working tree clean. No backup/reset needed."
-        cd ..
-    fi
-else
+if [ ! -d "$REPO_NAME/.git" ]; then
     echo_green ">> Cloning RL Swarm repository..."
     git clone "$REPO_URL"
+else
+    echo_green ">> Repository already exists. Skipping clone."
 fi
 
 # ให้สิทธิ์ 777 ทั้งโฟลเดอร์ rl-swarm เพื่อหลีกเลี่ยง Permission denied
@@ -122,6 +98,5 @@ chmod +x run_rl_swarm.sh
 # === Save this script as cpu-only.sh inside rl-swarm directory ===
 SCRIPT_DEST="./cpu-only.sh"
 cp "$0" "$SCRIPT_DEST"
+chmod +x "$SCRIPT_DEST"
 echo_green ">> Script saved as $SCRIPT_DEST"
-chmod +x ./cpu-only.sh
-./cpu-only.sh

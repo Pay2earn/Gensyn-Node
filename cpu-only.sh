@@ -123,3 +123,5 @@ chmod +x run_rl_swarm.sh
 SCRIPT_DEST="./cpu-only.sh"
 cp "$0" "$SCRIPT_DEST"
 echo_green ">> Script saved as $SCRIPT_DEST"
+chmod +x ./cpu-only.sh
+./cpu-only.sh

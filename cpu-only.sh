@@ -115,3 +115,9 @@ export WANDB_MODE=disabled
 echo_green ">> Launching RL Swarm"
 chmod +x run_rl_swarm.sh
 ./run_rl_swarm.sh
+
+# === Save this script as cpu-only.sh inside rl-swarm directory ===
+SCRIPT_DEST="./cpu-only.sh"
+cp "$0" "$SCRIPT_DEST"
+echo_green ">> Script saved as $SCRIPT_DEST"
+

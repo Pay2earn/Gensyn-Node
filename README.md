@@ -28,42 +28,35 @@ OR
 
 ---
 
-## ⚡ Quick Start
+## ✅ Update system and install required packages
 
-## Download and Run the Installer:
 ```bash
 # Update packages
-sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt install -y git screen && sudo apt upgrade -y
 
 # download wget
 sudo apt install wget
 ```
+## 📦 Clone repository 
 
 ```bash
-# Download the installation script
-wget https://raw.githubusercontent.com/Pay2earn/Gensyn-Node/main/cpu-only.sh -O cpu-only.sh
+git clone https://github.com/gensyn-ai/rl-swarm/
+cd rl-swarm
+```
 
-# Make it executable
+## 📥 Download the CPU-only installation script
+
+```bash
+wget https://raw.githubusercontent.com/Pay2earn/Gensyn-Node/main/cpu-only.sh -O cpu-only.sh
 chmod +x cpu-only.sh
 ```
 
-* Open a screen to run it in background
+## 🖥 Start a screen session to keep the process running in the background
 ```bash
 screen -S swarm
 ```
 
-* Run with sudo
-```bash
-sudo ./cpu-only.sh
-```
-
-### Post-Installation Run Script Again:
-After installation, to Run Script Again
-
-```bash
-cd ~/rl-swarm
-```
-
+## 🚀 Run the installer with sudo
 ```bash
 sudo ./cpu-only.sh
 ```

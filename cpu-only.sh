@@ -65,6 +65,7 @@ export CPU_ONLY=1
 export CUDA_VISIBLE_DEVICES=""
 export HF_HUB_DOWNLOAD_TIMEOUT=300
 export WANDB_MODE=disabled
+export DHT_FORCE_VISIBLE_ADDRS=1
 
 # === Run swarm launcher ===
 echo_green ">> Launching RL Swarm"

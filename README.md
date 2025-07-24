@@ -48,7 +48,9 @@ cd rl-swarm
 
 ```bash
 wget https://raw.githubusercontent.com/Pay2earn/Gensyn-Node/main/cpu-only.sh -O cpu-only.sh
+wget https://raw.githubusercontent.com/Pay2earn/Gensyn-Node/main/setup-zram.sh -O setup-zram.sh
 chmod +x cpu-only.sh
+chmod +x setup-zram.sh
 ```
 
 ## 🖥 Start a screen session to keep the process running in the background
@@ -57,6 +59,10 @@ screen -S swarm
 ```
 
 ## 🚀 Run the installer with sudo
+```bash
+sudo ./setup-zram.sh
+```
+
 ```bash
 sudo ./cpu-only.sh
 ```

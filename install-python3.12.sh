@@ -1,15 +1,15 @@
 #!/bin/bash
 
-set -e  # หยุดสคริปต์หากคำสั่งใดล้มเหลว
+set -e
 
-echo "🔄 Updating system packages (ignore apt_pkg warning)..."
-sudo apt update || true
+echo "📦 Installing base dependencies..."
+sudo apt install -y software-properties-common curl || true
 
-echo "🛠 Fixing possible apt_pkg error..."
+echo "🛠 Reinstalling python3-apt to fix apt_pkg error..."
 sudo apt install --reinstall -y python3-apt || true
 
-echo "📦 Installing dependencies..."
-sudo apt install -y software-properties-common curl
+echo "🔄 Updating package lists (apt)..."
+sudo apt update || true
 
 echo "➕ Adding deadsnakes PPA..."
 sudo add-apt-repository ppa:deadsnakes/ppa -y

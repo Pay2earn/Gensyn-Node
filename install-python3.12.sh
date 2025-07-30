@@ -2,14 +2,11 @@
 
 set -e
 
+echo "🧼 Removing command-not-found to avoid apt_pkg error..."
+sudo apt remove --purge -y command-not-found || true
+
 echo "📦 Installing base dependencies..."
-sudo apt install -y software-properties-common curl || true
-
-echo "🛠 Reinstalling python3-apt to fix apt_pkg error..."
-sudo apt install --reinstall -y python3-apt || true
-
-echo "🔄 Updating package lists (apt)..."
-sudo apt update || true
+sudo apt install -y software-properties-common curl
 
 echo "➕ Adding deadsnakes PPA..."
 sudo add-apt-repository ppa:deadsnakes/ppa -y

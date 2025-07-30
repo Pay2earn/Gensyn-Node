@@ -62,7 +62,7 @@ screen -S swarm
 
 ## 🚀 Run the installer with sudo
 ```bash
-sudo ./install-python312.sh
+sudo ./install-python3.12.sh
 ```
 
 ```bash

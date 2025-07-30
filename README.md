@@ -52,7 +52,7 @@ wget https://raw.githubusercontent.com/Pay2earn/Gensyn-Node/main/setup-zram.sh -
 wget https://raw.githubusercontent.com/Pay2earn/Gensyn-Node/main/setup-zram.sh -O install-python3.12.sh
 chmod +x cpu-only.sh
 chmod +x setup-zram.sh
-chmod +x install-python312.sh
+chmod +x install-python3.12.sh
 ```
 
 ## 🖥 Start a screen session to keep the process running in the background

@@ -5,6 +5,9 @@ set -e
 echo "🧼 Removing command-not-found to avoid apt_pkg error..."
 sudo apt remove --purge -y command-not-found || true
 
+echo "🧹 Removing cnf-update-db file if exists..."
+sudo rm -f /usr/lib/cnf-update-db || true
+
 echo "📦 Installing base dependencies..."
 sudo apt install -y software-properties-common curl
 
